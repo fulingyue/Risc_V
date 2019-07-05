@@ -38,7 +38,9 @@ std::uint32_t getBits(std::uint32_t x, std::size_t l, std::size_t r) {
 }
 }
 int Simulator::run() {
+  int i = 0;
   while (true) {
+    // std::cout << "===========" << "  " << std::dec << i<< std::hex <<  std::endl;
     reg[0] = 0;
 //    std:: cout << "reg10:" << reg[10] << std::endl;
     If();
@@ -54,10 +56,12 @@ int Simulator::run() {
 
     Mem();
     Wb();
-    //for(auto i = 0;i < 32;++i){
+    for(auto i = 0;i < 32;++i){
       //if(reg[i]);
-         // std::cout << "reg" << i << ":  " << reg[i] << std:: endl;
-    //}
+         // std::cout << std::dec << reg[i]  << std::hex << '\t';
+    }
+    // std::cout << std::endl;
+    ++i;
   }
 }
 void Simulator::If() {
@@ -67,7 +71,7 @@ void Simulator::If() {
 //  if( pc == 0x1120)
 //    assert(false);
   pc += 4;
-   // std::cout << std::hex <<  pc - 4 << std::endl;
+    // std::cout << std::hex <<  pc - 4 << std::endl;
    // std::cout << std::bitset<32>(buffer[0].inst) << std::endl;
 //  for(auto i = 0;i < 32;++i){
 //    // // std::cout << std::hex << reg[i] << std::endl;
@@ -282,7 +286,8 @@ void Simulator::Id() {
       buffer[1].type = SLLI;
     default: // R
       if (func3 == 5) {
-        if (buffer[0].inst >> 30)
+        tmp = getBits(buffer[0].inst,30,30);
+        if (!tmp)
           buffer[1].type = SRLI;
         else
           buffer[1].type = SRAI;
@@ -331,7 +336,9 @@ void Simulator::Exe() {
     buffer[2].exeRes = (uint32_t)buffer[1].rs1 >> ((uint32_t)buffer[1].rs2 & 31u);
     break;
   case SRAI:
+
     buffer[2].exeRes = (buffer[1].rs1) >> ((uint32_t)buffer[1].rs2 & 31u);
+//    // std::cout << "****" << ((uint32_t)buffer[1].rs2 & 31u) << std::endl;
     break;
   case ADD:
     buffer[2].exeRes = buffer[1].rs1 + buffer[1].rs2;

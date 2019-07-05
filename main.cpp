@@ -1,8 +1,12 @@
 #include <iostream>
 #include "Simulator.h"
 #include <string>
+#include <stdio.h>
 
 int main() {
+
+//  freopen("../../src/bulgarian.data", "r", stdin);
+//  freopen("../foolout", "w", stdout);
   std::string inp;
   char ch;
   while (std::cin.get(ch)) {
