@@ -6,6 +6,7 @@
 #include <string>
 #include <iostream>
 #include <bitset>
+#include <cstring>
 #include <array>
 std::string str[] = {
     "SLLI", "SRLI", "SRAI", "ADD", "SUB", "SLL", "SLT",  "SLTU", "XOR",   "SRL",   "SRA",   "OR",   "AND",
