@@ -56,10 +56,10 @@ int Simulator::run() {
 
     Mem();
     Wb();
-    for(auto i = 0;i < 32;++i){
+    //for(auto i = 0;i < 32;++i){
       //if(reg[i]);
          // std::cout << std::dec << reg[i]  << std::hex << '\t';
-    }
+    //}
     // std::cout << std::endl;
     ++i;
   }
